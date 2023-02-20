@@ -157,7 +157,7 @@ const Employees = (props) => {
       </form>
       <div className="row">
         <p
-          className="col col-md-12 text-center text-primary"
+          className="text-center text-primary"
           style={{ fontSize: "1.5rem" }}
         >
           {message}
@@ -165,7 +165,7 @@ const Employees = (props) => {
         {employees.length !== 0 ? (
           employees.map((emp) => {
             return (
-              <div key={emp.aadharNumber} className="col col-md-12">
+              <div key={emp.aadharNumber} className="col col-sm-12">
                 <Employee
                   name={emp.name}
                   email={emp.email}

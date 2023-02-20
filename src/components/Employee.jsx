@@ -21,8 +21,8 @@ const Employee = ({
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-  const URL = "https://backend-production-0322.up.railway.app"
   // const URL = "http://localhost:8080";
+  const URL = "https://backend-production-0322.up.railway.app"
   const [isEditing, setisEditing] = useState(false);
   const [employee, setemployee] = useState({});
   const updatehandler = async (aadharNumber) => {
@@ -69,8 +69,8 @@ const Employee = ({
       {!isEditing ? (
         <div className="my-2 shadow mb-2 bg-white rounded">
           <div className="card">
-            <div className="card-body d-flex justify-content-between">
-              <div className="d-flex w-50 mx-3 flex-column">
+            <div className="card-body d-flex flex-sm-column flex-md-row justify-content-between">
+              <div className="d-flex mx-3 flex-column">
                 <p className="card-title" style={{ fontSize: "1.5rem" }}>
                   <strong>{capitalizeFirstLetter(name)}</strong>
                 </p>
@@ -91,7 +91,7 @@ const Employee = ({
                   </small>
                 </p>
               </div>
-              <div className="d-flex w-50 mx-3 flex-column">
+              <div className="d-flex  mx-3 flex-column">
                 <h5 className="card-title">Aadhar Number : {aadharNumber}</h5>
                 <h6 className="card-subtitle mb-2 text-muted">
                   Company : {capitalizeFirstLetter(company_name)}
@@ -129,8 +129,8 @@ const Employee = ({
       ) : (
         <div className="my-2 shadow mb-2 bg-white rounded">
           <div className="card">
-            <div className="card-body d-flex justify-content-between">
-              <div className="d-flex w-50 mx-3 flex-column">
+            <div className="card-body d-flex flex-sm-column flex-md-row justify-content-between">
+              <div className="d-flex mx-3 flex-column">
                 <div>
                   <label htmlFor="name">Name</label>
                   <input
@@ -233,7 +233,7 @@ const Employee = ({
                   </div>
                 </div>
               </div>
-              <div className="d-flex w-50 mx-3 flex-column">
+              <div className="d-flex mx-3 flex-column">
                 <label htmlFor="aadharNumber">Aadhar Number</label>
                 <input
                   autoComplete="off"
