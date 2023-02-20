@@ -165,7 +165,7 @@ const Employees = (props) => {
         {employees.length !== 0 ? (
           employees.map((emp) => {
             return (
-              <div key={emp.aadharNumber} className="col col-sm-12">
+              <div key={emp.aadharNumber} className="col col-12">
                 <Employee
                   name={emp.name}
                   email={emp.email}

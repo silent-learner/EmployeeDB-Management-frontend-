@@ -69,7 +69,7 @@ const Employee = ({
       {!isEditing ? (
         <div className="my-2 shadow mb-2 bg-white rounded">
           <div className="card">
-            <div className="card-body d-flex flex-sm-column flex-md-row justify-content-between">
+            <div className="card-body d-flex flex-column flex-md-row justify-content-between">
               <div className="d-flex mx-3 flex-column">
                 <p className="card-title" style={{ fontSize: "1.5rem" }}>
                   <strong>{capitalizeFirstLetter(name)}</strong>
@@ -129,7 +129,7 @@ const Employee = ({
       ) : (
         <div className="my-2 shadow mb-2 bg-white rounded">
           <div className="card">
-            <div className="card-body d-flex flex-sm-column flex-md-row justify-content-between">
+            <div className="card-body d-flex flex-column flex-md-row justify-content-between">
               <div className="d-flex mx-3 flex-column">
                 <div>
                   <label htmlFor="name">Name</label>
