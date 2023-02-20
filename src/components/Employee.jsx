@@ -20,10 +20,13 @@ const Employee = ({
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
+  // const URL = "https://backend-production-0322.up.railway.app"
+  const URL = "http://localhost:8080";
   const [isEditing, setisEditing] = useState(false);
   const [employee, setemployee] = useState({});
+  const [message, setmessage] = useState("");
   const updatehandler = async (aadharNumber) => {
-    let data = await fetch(`/${aadharNumber}`, {
+    const data = await fetch(`${URL}/employee/${aadharNumber}`, {
       method: "PUT",
       mode: "cors",
       headers: {
@@ -31,16 +34,20 @@ const Employee = ({
       },
       body: JSON.stringify(employee),
     });
+    setisEditing(false);
     let json = await data.json();
     console.log(json);
-    setisEditing(false);
-    console.log(render);
+    setmessage(json.message);
+    setTimeout(() => {
+      setmessage("");
+    }, 2000);
+    // console.log(render);
     setrender(!render);
   };
   const handledelete = async (aadharNumber) => {
     let confirm = window.confirm("Are you sure to delete this employee ? ");
     if (confirm === true) {
-      let data = await fetch(`/${aadharNumber}`, {
+      let data = await fetch(`${URL}/employee/${aadharNumber}`, {
         method: "DELETE",
         mode: "cors",
         headers: {
@@ -48,13 +55,20 @@ const Employee = ({
         },
       });
       let json = await data.json();
-      console.log(json);
-    //   console.log(render);
+      setmessage(json.message);
+      setTimeout(() => {
+        setmessage("");
+      }, 2000);
+      //   console.log(json);
+      //   console.log(render);
       setrender(!render);
     }
   };
   return (
     <>
+      <p className="text-center text-primary" style={{ fontSize: "1.5rem" }}>
+        {message}
+      </p>
       {!isEditing ? (
         <div className="my-2 shadow mb-2 bg-white rounded">
           <div className="card">
@@ -123,6 +137,7 @@ const Employee = ({
                 <div>
                   <label htmlFor="name">Name</label>
                   <input
+                    autoComplete="off"
                     id="name"
                     type="text"
                     className="form-control"
@@ -136,6 +151,7 @@ const Employee = ({
                 <div>
                   <label htmlFor="email">Email</label>
                   <input
+                    autoComplete="off"
                     id="email"
                     type="email"
                     className="form-control"
@@ -149,6 +165,7 @@ const Employee = ({
                 <div>
                   <label htmlFor="phone">Phone</label>
                   <input
+                    autoComplete="off"
                     id="phone"
                     type="number"
                     className="form-control"
@@ -163,6 +180,7 @@ const Employee = ({
                   <div className="col">
                     <label htmlFor="address">Address</label>
                     <input
+                      autoComplete="off"
                       id="address"
                       type="text"
                       className="form-control"
@@ -176,6 +194,7 @@ const Employee = ({
                   <div className="col">
                     <label htmlFor="city">City</label>
                     <input
+                      autoComplete="off"
                       id="city"
                       type="text"
                       className="form-control"
@@ -191,6 +210,7 @@ const Employee = ({
                   <div className="col">
                     <label htmlFor="country">Country</label>
                     <input
+                      autoComplete="off"
                       id="country"
                       type="text"
                       className="form-control"
@@ -219,6 +239,7 @@ const Employee = ({
               <div className="d-flex w-50 mx-3 flex-column">
                 <label htmlFor="aadharNumber">Aadhar Number</label>
                 <input
+                  autoComplete="off"
                   id="aadharNumber"
                   type="text"
                   className="form-control"
@@ -234,6 +255,7 @@ const Employee = ({
                 />
                 <label htmlFor="company">Company</label>
                 <input
+                  autoComplete="off"
                   id="company"
                   type="text"
                   className="form-control"
@@ -248,6 +270,7 @@ const Employee = ({
                 />
                 <label htmlFor="department">Department</label>
                 <input
+                  autoComplete="off"
                   id="department"
                   type="number"
                   className="form-control"
@@ -262,6 +285,7 @@ const Employee = ({
                 />
                 <label htmlFor="salary">Salary</label>
                 <input
+                  autoComplete="off"
                   id="salary"
                   type="number"
                   className="form-control"

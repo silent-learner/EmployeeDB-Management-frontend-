@@ -5,7 +5,8 @@ import Employee from "./components/Employee";
 
 const Employees = (props) => {
     const {setProgress} = props
-//   const URL = "http://192.168.43.140:8080/employee";
+  const URL = "http://localhost:8080";
+  // const URL = "https://backend-production-0322.up.railway.app";
 const [render, setrender] = useState(false);
   const [name, setname] = useState('');
   const [city, setcity] = useState('');
@@ -18,10 +19,10 @@ const [render, setrender] = useState(false);
   const query = `name=${name}&city=${city}&country=${country}&dateOfJoining=${dateOfJoining}&company_name=${company}&aadharNumber=${aadharNumber}`;
   const [employees, setemployees] = useState([]);
   const fetchemployee = async () => {
-    console.log(props);
+    // console.log(props);
     setProgress(10)
-    console.log(`https://backend-production-0322.up.railway.app/employee?${query}`);
-    let data = await fetch(`/?${query}`, {
+    // console.log(`https://backend-production-0322.up.railway.app/employee?${query}`);
+    let data = await fetch(`${URL}/employee/?${query}`, {
       method: "POST",
       mode : "cors",
       headers: {
@@ -49,8 +50,8 @@ const [render, setrender] = useState(false);
         setdateOfJoining(true)
         setstartDate(new Date(start).toISOString())
         setendDate(new Date(end).toISOString())
-        console.log(new Date(start).toISOString());
-        console.log(new Date(end).toISOString());
+        // console.log(new Date(start).toISOString());
+        // console.log(new Date(end).toISOString());
     }else{
         setdateOfJoining(false)
         setstartDate("")
@@ -59,16 +60,16 @@ const [render, setrender] = useState(false);
   }
   useEffect(() => {
       fetchemployee().then((arr) => {
-        console.log(arr);
+        // console.log(arr);
         setemployees(arr);
       });
-      console.log(employees);
+    //   console.log(employees);
       // eslint-disable-next-line
   },[name,city,country,aadharNumber,startDate,endDate,company,render]);
   return (
     <div className="container">
       <p className="mt-3 d-flex justify-content-center" style={{"fontSize" : "1.7rem"}}>Filter the Employee's list</p>
-      <form>
+      <form autoComplete="off">
         <div className="row m-2">
           <div className="col">
             <label htmlFor="name">Name</label>

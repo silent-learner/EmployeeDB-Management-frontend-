@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import icon from "../favicon.png";
 
-const NavBar = () => {
+const NavBar = ({ location }) => {
+  const [isOpen, setisOpen] = useState(false);
+  const handleOnCLick = () => {
+    setisOpen(!isOpen);
+  };
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark p-2">
       <Link className="navbar-brand" to="/">
+        <img src={icon} height="40px" width="40px" alt="icon" />
         Employee DB Management
       </Link>
       <button
@@ -13,21 +19,28 @@ const NavBar = () => {
         data-toggle="collapse"
         data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
+        aria-expanded={isOpen ? true : false} aria-label="Toggle navigation" onClick={handleOnCLick}
       >
         <span className="navbar-toggler-icon"></span>
       </button>
 
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+      <div className={`${!isOpen ? 'collapse' : ''} navbar-collapse`} id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
-          <li className="nav-item active">
-            <Link className="nav-link" to="/">
+          <li className="nav-item" onClick={handleOnCLick}>
+            <Link
+              className={`nav-link ${location === "/" ? "text-white" : ""}`}
+              to="/"
+            >
               Home
             </Link>
           </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/create">
+          <li className="nav-item" onClick={handleOnCLick}>
+            <Link
+              className={`nav-link ${
+                location === "/create" ? "text-white" : ""
+              }`}
+              to="/create"
+            >
               Add Employees
             </Link>
           </li>
