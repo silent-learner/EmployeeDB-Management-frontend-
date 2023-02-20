@@ -21,8 +21,8 @@ const Employee = ({
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-  // const URL = "https://backend-production-0322.up.railway.app"
-  const URL = "http://localhost:8080";
+  const URL = "https://backend-production-0322.up.railway.app"
+  // const URL = "http://localhost:8080";
   const [isEditing, setisEditing] = useState(false);
   const [employee, setemployee] = useState({});
   const updatehandler = async (aadharNumber) => {
