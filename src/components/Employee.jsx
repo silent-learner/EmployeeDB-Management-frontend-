@@ -16,6 +16,7 @@ const Employee = ({
   dateOfJoining,
   render,
   setrender,
+  setmessage
 }) => {
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -24,7 +25,6 @@ const Employee = ({
   const URL = "http://localhost:8080";
   const [isEditing, setisEditing] = useState(false);
   const [employee, setemployee] = useState({});
-  const [message, setmessage] = useState("");
   const updatehandler = async (aadharNumber) => {
     const data = await fetch(`${URL}/employee/${aadharNumber}`, {
       method: "PUT",
@@ -66,9 +66,6 @@ const Employee = ({
   };
   return (
     <>
-      <p className="text-center text-primary" style={{ fontSize: "1.5rem" }}>
-        {message}
-      </p>
       {!isEditing ? (
         <div className="my-2 shadow mb-2 bg-white rounded">
           <div className="card">
