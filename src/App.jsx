@@ -4,11 +4,13 @@ import NavBar from "./components/NavBar";
 import Employees from "./Employees";
 import LoadingBar from "react-top-loading-bar";
 import { useState } from "react";
+import Login from "./components/Login";
 
 function App() {
   const location = useLocation();
   // console.log(location.pathname);
   const [progress, setProgress] = useState(0);
+  const [isloggedin, setisloggedin] = useState(false);
   return (
     <>
       <LoadingBar
@@ -17,14 +19,15 @@ function App() {
         height={3}
         onLoaderFinished={() => setProgress(0)}
       />
-      <NavBar location={location.pathname} />
+      <NavBar location={location.pathname} isloggedin={isloggedin} setisloggedin={setisloggedin} />
       <Routes>
         <Route
           exact
           path="/"
-          element={<Employees setProgress={setProgress} />}
+          element={<Employees setProgress={setProgress} isloggedin={isloggedin}/>}
         />
-        <Route path="/create" element={<CreateEmployees />} />
+        <Route path="/create" element={<CreateEmployees isloggedin={isloggedin}/>} />
+        <Route path="/login" element={<Login isloggedin={isloggedin} setisloggedin={setisloggedin}/>} />
       </Routes>
     </>
   );

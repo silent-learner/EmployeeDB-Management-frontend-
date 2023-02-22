@@ -4,7 +4,7 @@ import { DateRangePicker } from "rsuite";
 import Employee from "./components/Employee";
 
 const Employees = (props) => {
-  const { setProgress } = props;
+  const { setProgress , isloggedin  } = props;
   // const URL = "http://localhost:8080";
   const URL = "https://backend-production-0322.up.railway.app";
   const [message, setmessage] = useState("");
@@ -181,6 +181,7 @@ const Employees = (props) => {
                   render={render}
                   setrender={setrender}
                   setmessage={setmessage}
+                  isloggedin={isloggedin}
                 />
               </div>
             );

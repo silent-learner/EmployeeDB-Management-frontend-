@@ -16,7 +16,8 @@ const Employee = ({
   dateOfJoining,
   render,
   setrender,
-  setmessage
+  setmessage,
+  isloggedin
 }) => {
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -41,6 +42,7 @@ const Employee = ({
     setTimeout(() => {
       setmessage("");
     }, 2000);
+    setemployee({})
     // console.log(render);
     setrender(!render);
   };
@@ -106,7 +108,7 @@ const Employee = ({
                   </em>
                   {salary}
                 </h6>
-                <div className="d-flex justify-content-end">
+               {isloggedin === true ? <div className="d-flex justify-content-end">
                   <button
                     className="btn btn-sm btn-outline-success mx-2"
                     onClick={() => {
@@ -121,7 +123,7 @@ const Employee = ({
                   >
                     Delete
                   </button>
-                </div>
+                </div> : ''}
               </div>
             </div>
           </div>

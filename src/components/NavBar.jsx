@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import icon from "../favicon.png";
 
-const NavBar = ({ location }) => {
+const NavBar = ({ location , isloggedin ,setisloggedin}) => {
   const [isOpen, setisOpen] = useState(false);
   const handleOnCLick = () => {
     setisOpen(!isOpen);
@@ -19,12 +19,19 @@ const NavBar = ({ location }) => {
         data-toggle="collapse"
         data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent"
-        aria-expanded={isOpen ? true : false} aria-label="Toggle navigation" onClick={handleOnCLick}
+        aria-expanded={isOpen ? true : false}
+        aria-label="Toggle navigation"
+        onClick={handleOnCLick}
       >
         <span className="navbar-toggler-icon"></span>
       </button>
 
-      <div className={`${!isOpen ? 'collapse' : ''} navbar-collapse`} id="navbarSupportedContent">
+      <div
+        className={`${
+          !isOpen ? "collapse" : ""
+        } navbar-collapse`}
+        id="navbarSupportedContent"
+      >
         <ul className="navbar-nav mr-auto">
           <li className="nav-item" onClick={handleOnCLick}>
             <Link
@@ -42,6 +49,19 @@ const NavBar = ({ location }) => {
               to="/create"
             >
               Add Employees
+            </Link>
+          </li>
+          <li className="nav-item" onClick={()=> {
+            setisloggedin(false)
+            handleOnCLick()
+            }}>
+            <Link
+              className={`nav-link ${
+                location === "/login" ? "text-white" : ""
+              }`}
+              to="/login"
+            >
+             {isloggedin === true ? 'Logout' : 'Login'}
             </Link>
           </li>
         </ul>

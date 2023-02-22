@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { DatePicker } from "rsuite";
 import "../../node_modules/rsuite/dist/rsuite.min.css";
 
-const CreateEmployees = () => {
+const CreateEmployees = ({isloggedin}) => {
   const [employee, setemployee] = useState({
     name: "",
     email: "",
@@ -17,6 +18,12 @@ const CreateEmployees = () => {
     dateOfJoining: "",
   });
   const [message, setmessage] = useState("");
+  const navigate = useNavigate()
+  useEffect(() => {
+    if(isloggedin === false){
+      navigate('/login')
+    }
+  }, [isloggedin,navigate]);
   // const URL = "http://localhost:8080";
   const URL = "https://backend-production-0322.up.railway.app"
   const handlesubmit = async (e) => {
